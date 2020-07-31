@@ -4,7 +4,7 @@ populationPeds = {
             return populationPeds.enum[math.random(1,#populationPeds.enum)]
         else
             local result = nil
-            while result == nil then
+            while result == nil do
                 Citizen.Wait(10)
                 result = populationPeds.enum[math.random(1,#populationPeds.enum)]
                 for k,v in pairs(filterArray) do
