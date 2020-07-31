@@ -1,4 +1,4 @@
-populationPeds {
+populationPeds = {
     randomize = function(filterArray)
         if filterArray == nil then
             return populationPeds.enum[math.random(1,#populationPeds.enum)]

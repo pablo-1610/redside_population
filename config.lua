@@ -1,5 +1,5 @@
-populationConfig {
-    filteredGroup {
+populationConfig = {
+    filteredGroup = {
         [1] = { -- Groupe place des cubes
             filter = {"M_CHIC"}
             peds = {
