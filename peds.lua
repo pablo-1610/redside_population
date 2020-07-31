@@ -1,11 +1,8 @@
 populationPeds = {
     randomize = function(filterArray)
-        print("[Randomizer] Instancied")
         if filterArray == nil then
-            print("[Randomizer] No filter")
             return populationPeds.enum[math.random(1,#populationPeds.enum)]
         else
-            print("[Randomizer] Filter")
             local possibleResult = nil
             local result = nil
             while result == nil do
