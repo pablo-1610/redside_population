@@ -20,6 +20,8 @@ Citizen.CreateThread(function()
             SetBlockingOfNonTemporaryEvents(finalEntity,true)
             FreezeEntityPosition(finalEntity, true)
             SetEntityInvincible(finalEntity, true)
+            local scenario = populationAnimations.randomize(group.filterAnim)
+            TaskStartScenarioInPlace(finalEntity, scenario, 0, true)
         end
     end
 end)
