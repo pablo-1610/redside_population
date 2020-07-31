@@ -19,6 +19,7 @@ Citizen.CreateThread(function()
             SetEntityAsMissionEntity(finalEntity, true, true)
             SetBlockingOfNonTemporaryEvents(finalEntity,true)
             FreezeEntityPosition(finalEntity, true)
+            SetEntityInvincible(finalEntity, true)
         end
     end
 end)
