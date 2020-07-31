@@ -21,7 +21,9 @@ populationAnimations = {
     end,
 
     enum = {
-        "WORLD_HUMAN_AA_COFFEE",
-        "WORLD_HUMAN_AA_SMOKE",
+        "WORLD_HUMAN_AA_COFFEE", -- Café
+        "WORLD_HUMAN_AA_SMOKE", -- Cigarette 
+        "WORLD_HUMAN_HAMMERING", -- Hammer
+        "WORLD_HUMAN_BINOCULARS", -- Jumelles
     },
 }

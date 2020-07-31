@@ -1,5 +1,5 @@
 Citizen.CreateThread(function()
-    Citizen.Wait(5000)
+    Citizen.Wait(1000)
     -- Generating groups NPCs
     for keyA,group in pairs(populationConfig.filteredGroup) do
         local filter = group.filter
@@ -24,7 +24,10 @@ Citizen.CreateThread(function()
             if scenario ~= nil then
                 TaskStartScenarioInPlace(finalEntity, scenario, 0, true)
             end
+            SetModelAsNoLongerNeeded(pedModel)
+            Citizen.Wait(100)
         end
+        Citizen.Wait(500)
     end
 end)
 
