@@ -37,7 +37,7 @@ populationConfig = {
     -- anim                     -> animation que le ped fera, toutes les animations dans animations.lua, si nil alors aucune animation ne sera faite
     
     individualPeds = {
-        {model = "", vector = vector3(275.606, -833.079, 29.28406), heading = 214.03770446778, anim = nil}
+        {model = "", vector = vector3(240.79, -863.16, 29.71), heading = 90.0, anim = nil}
     }
 
 }

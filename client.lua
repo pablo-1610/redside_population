@@ -23,6 +23,7 @@ Citizen.CreateThread(function()
             --local finalEntity = CreatePed_(9,pedModel,position.x,position.y,position.z,v.heading,false,true)
             
             local finalEntity = CreatePed(9,pedModel,position.x,position.y,position.z,v.heading,false,true)
+
             SetEntityAsMissionEntity(finalEntity, true, true)
             SetBlockingOfNonTemporaryEvents(finalEntity,true)
             FreezeEntityPosition(finalEntity, true)
@@ -38,6 +39,32 @@ Citizen.CreateThread(function()
         end
         Citizen.Wait(500)
     end
+
+    print("[RS_POPULATION] Generated "..#generatedModels.." group peds.")
+
+    for keyC,individualPed in pairs(populationConfig.individualPeds) do
+        local model = GetHashKey(individualPed.model)
+        RequestModel(model)
+        while not HasModelLoaded(model) do Citizen.Wait(100) end
+        table.insert(generatedModels, model)
+        local position = groundVector(individualPed.vector.x, individualPed.vector.y, individualPed.vector.z)
+
+        -- rFramework friendly:
+        --local finalEntity = CreatePed_(9,pedModel,position.x,position.y,position.z,v.heading,false,true)
+        
+        local finalEntity = CreatePed(9,model,position.x,position.y,position.z,individualPed.heading,false,true)
+
+        SetEntityAsMissionEntity(finalEntity, true, true)
+        SetBlockingOfNonTemporaryEvents(finalEntity,true)
+        FreezeEntityPosition(finalEntity, true)
+        SetEntityInvincible(finalEntity, true)
+        if individualPed.anim ~= nil then
+            TaskStartScenarioInPlace(finalEntity, individualPed.anim, 0, true)
+        end
+        Citizen.Wait(100)
+    end
+
+    print("[RS_POPULATION] Generated "..#generatedModels.." individuals peds.")
 
 
     for _,v in pairs(generatedModels) do
