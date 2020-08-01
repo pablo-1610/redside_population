@@ -1,5 +1,6 @@
 populationConfig = {
 
+    loadAllPedsAfter = 20, -- seconds
 
     -- Liste de peds: https://docs.fivem.net/docs/game-references/ped-models/ ou https://wiki.rage.mp/index.php?title=Peds
 
@@ -37,8 +38,8 @@ populationConfig = {
     -- anim                     -> animation que le ped fera, toutes les animations dans animations.lua, si nil alors aucune animation ne sera faite
     
     individualPeds = {
-        {model = "", vector = vector3(240.79, -863.16, 29.71), heading = 90.0, anim = nil}
-    }
+        {model = "a_m_m_acult_01", vector = vector3(240.79, -863.16, 29.71), heading = 90.0, anim = nil},
+    },
 
 }
 

@@ -9,7 +9,6 @@ client_scripts {
 	'config.lua',
     'client.lua',
     'peds.lua',
-    'utils.lua',
     'animations.lua'
 }
 
