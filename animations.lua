@@ -88,19 +88,5 @@ populationAnimations = {
         "WORLD_HUMAN_WELDING", -- Soudure
 
         "CODE_HUMAN_POLICE_INVESTIGATE", -- Policier: Enquête
-        
-
-        
-
-
-
-        
-
-        
-
-    
-
-
-
     },
 }
