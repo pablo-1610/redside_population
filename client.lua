@@ -10,10 +10,11 @@ Citizen.CreateThread(function()
     for keyA,group in pairs(populationConfig.filteredGroup) do
         local filter = group.filter
         local peds = group.peds
+        Citizen.Wait(10)
         for keyB,v in pairs(group.peds) do
             local dst = GetDistanceBetweenCoords(pCoords, v.vector, true)
             
-            if dst <= 10 and v.generated == false then
+            if dst <= populationConfig.spawnDistance and v.generated == false then
 
 
             local pedModel = nil
@@ -44,9 +45,9 @@ Citizen.CreateThread(function()
                 end
             else
             end
-            print("[RS_POPULATION] Generated NPC (G:"..keyA.."| ID:"..keyB..") model: "..pedValue.model)
             v.generated = true
             Citizen.Wait(10)
+            SetModelAsNoLongerNeeded(pedModel)
 
 
             end
@@ -55,20 +56,20 @@ Citizen.CreateThread(function()
     end
 
 
-    end
 
-
-    --[[
     for keyC,v in pairs(populationConfig.individualPeds) do
+
+        local dst = GetDistanceBetweenCoords(pCoords, v.vector, true)
+        if dst <= populationConfig.spawnDistance and v.generated == false then
+
         local model = GetHashKey(v.model)
         RequestModel(model)
         while not HasModelLoaded(model) do Citizen.Wait(100) end
-        table.insert(generatedModels, model)
         local position = groundVector(v.vector.x, v.vector.y, v.vector.z)
 
         -- rFramework friendly:
-        local finalEntity = CreatePed_(9,pedModel,position.x,position.y,position.z,v.heading,false,true)
         --local finalEntity = CreatePed(9,model,position.x,position.y,position.z,v.heading,false,true)
+        local finalEntity = CreatePed(9,model,position.x,position.y,position.z,v.heading,false,true)
 
         SetEntityAsMissionEntity(finalEntity, true, true)
         SetBlockingOfNonTemporaryEvents(finalEntity,true)
@@ -77,9 +78,18 @@ Citizen.CreateThread(function()
         if v.anim ~= nil then
             TaskStartScenarioInPlace(finalEntity, v.anim, 0, true)
         end
-        Citizen.Wait(100)
+        Citizen.Wait(10)
+        v.generated = true
+        SetModelAsNoLongerNeeded(model)
+
+        end
     end
-    --]]
+    
+
+
+    end
+
+
 
 end)
 
