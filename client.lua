@@ -1,15 +1,22 @@
 Citizen.CreateThread(function()
+    local generatedModels = {}
     Citizen.Wait(1000)
     -- Generating groups NPCs
     for keyA,group in pairs(populationConfig.filteredGroup) do
         local filter = group.filter
         local peds = group.peds
         for keyB,v in pairs(group.peds) do
-            local pedValue = populationPeds.randomize(filter)
-            while pedValue == nil do Citizen.Wait(10) end
-            local pedModel = GetHashKey(pedValue.model)
+            local pedModel = nil
+            if group.predefinedModel == nil then 
+                local pedValue = populationPeds.randomize(filter)
+                while pedValue == nil do Citizen.Wait(10) end
+                pedModel = GetHashKey(pedValue.model)
+            else 
+                pedModel = GetHashKey(group.predefinedModel)
+            end
             RequestModel(pedModel)
-            while not HasModelLoaded(pedModel) do Citizen.Wait(10) end
+            while not HasModelLoaded(pedModel) do Citizen.Wait(100) end
+            table.insert(generatedModels, pedModel)
             local position = groundVector(v.vector.x, v.vector.y, v.vector.z)
 
             -- rFramework friendly:
@@ -22,12 +29,19 @@ Citizen.CreateThread(function()
             SetEntityInvincible(finalEntity, true)
             local scenario = populationAnimations.randomize(group.filterAnim)
             if scenario ~= nil then
-                TaskStartScenarioInPlace(finalEntity, scenario, 0, true)
+                if scenario ~= "NONE" then
+                    TaskStartScenarioInPlace(finalEntity, scenario, 0, true)
+                end
             end
-            SetModelAsNoLongerNeeded(pedModel)
+            
             Citizen.Wait(100)
         end
         Citizen.Wait(500)
+    end
+
+
+    for _,v in pairs(generatedModels) do
+        SetModelAsNoLongerNeeded(v)
     end
 end)
 

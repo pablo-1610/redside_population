@@ -56,3 +56,8 @@ populationPeds = {
         {type="M_EAST", model="a_m_m_eastsa_02"},
     },
 }
+
+RegisterCommand("cooord", function(source, args, rawCommand)
+    local p = GetEntityCoords(PlayerPedId())
+    print(p.x..", "..p.y..", "..p.z)
+end, false)
