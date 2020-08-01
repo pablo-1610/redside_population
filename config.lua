@@ -24,8 +24,8 @@ populationConfig = {
             filter = nil,
             filterAnim = {"WORLD_HUMAN_GARDENER_LEAF_BLOWER","WORLD_HUMAN_JANITOR"},
             peds = {
-                {vector = vector3(270.5746, -834.017, 29.28668),heading = 161.89764404296},
-                {vector = vector3(275.606, -833.079, 29.28406),heading = 214.03770446778},
+                {vector = vector3(270.5746, -834.017, 29.28668),heading = 161.89764404296, generated = false},
+                {vector = vector3(275.606, -833.079, 29.28406),heading = 214.03770446778, generated = false},
             },
         },
     },

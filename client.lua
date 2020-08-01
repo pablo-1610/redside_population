@@ -3,10 +3,19 @@ Citizen.CreateThread(function()
     local generatedModels = {}
     Citizen.Wait(10)
     -- Generating groups NPCs
+    while true do
+        Citizen.Wait(500)
+        local pCoords = GetEntityCoords(PlayerPedId())
+
     for keyA,group in pairs(populationConfig.filteredGroup) do
         local filter = group.filter
         local peds = group.peds
         for keyB,v in pairs(group.peds) do
+            local dst = GetDistanceBetweenCoords(pCoords, v.vector, true)
+            
+            if dst <= 10 and v.generated == false then
+
+
             local pedModel = nil
             if group.predefinedModel == nil then 
                 local pedValue = populationPeds.randomize(filter)
@@ -21,8 +30,8 @@ Citizen.CreateThread(function()
             local position = groundVector(v.vector.x, v.vector.y, v.vector.z)
 
             -- rFramework friendly:
-            local finalEntity = CreatePed_(9,pedModel,position.x,position.y,position.z,v.heading,false,true)
-            --local finalEntity = CreatePed(9,pedModel,position.x,position.y,position.z,v.heading,false,true)
+            --local finalEntity = CreatePed_(9,pedModel,position.x,position.y,position.z,v.heading,false,true)
+            local finalEntity = CreatePed(9,pedModel,position.x,position.y,position.z,v.heading,false,true)
 
             SetEntityAsMissionEntity(finalEntity, true, true)
             SetBlockingOfNonTemporaryEvents(finalEntity,true)
@@ -33,18 +42,23 @@ Citizen.CreateThread(function()
                 if scenario ~= "NONE" then
                     TaskStartScenarioInPlace(finalEntity, scenario, 0, true)
                 end
+            else
             end
-            
-            Citizen.Wait(100)
+            print("[RS_POPULATION] Generated NPC (G:"..keyA.."| ID:"..keyB..") model: "..pedValue.model)
+            v.generated = true
+            Citizen.Wait(10)
+
+
+            end
+
         end
     end
 
-    print("[RS_POPULATION] Generated "..#generatedModels.." group peds.")
-    for _,v in pairs(generatedModels) do
-        SetModelAsNoLongerNeeded(v)
-    end
-    generatedModels = {}
 
+    end
+
+
+    --[[
     for keyC,v in pairs(populationConfig.individualPeds) do
         local model = GetHashKey(v.model)
         RequestModel(model)
@@ -65,12 +79,8 @@ Citizen.CreateThread(function()
         end
         Citizen.Wait(100)
     end
+    --]]
 
-    print("[RS_POPULATION] Generated "..#generatedModels.." individuals peds.")
-    for _,v in pairs(generatedModels) do
-        SetModelAsNoLongerNeeded(v)
-    end
-    generatedModels = {}
 end)
 
 function groundVector(x,y,z) 
