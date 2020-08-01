@@ -8,7 +8,6 @@ populationAnimations = {
             local possibleResult = nil
             local result = nil
             while result == nil do
-                Citizen.Wait(50)
                 possibleResult = populationAnimations.enum[math.random(1,#populationAnimations.enum)]
                 for k,v in pairs(filterArray) do
                     if possibleResult == v then

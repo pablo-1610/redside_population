@@ -6,7 +6,6 @@ populationPeds = {
             local possibleResult = nil
             local result = nil
             while result == nil do
-                Citizen.Wait(50)
                 possibleResult = populationPeds.enum[math.random(1,#populationPeds.enum)]
                 for k,v in pairs(filterArray) do
                     if possibleResult.type == v then
