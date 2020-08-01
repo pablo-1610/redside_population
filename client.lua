@@ -21,9 +21,8 @@ Citizen.CreateThread(function()
             local position = groundVector(v.vector.x, v.vector.y, v.vector.z)
 
             -- rFramework friendly:
-            --local finalEntity = CreatePed_(9,pedModel,position.x,position.y,position.z,v.heading,false,true)
-            
-            local finalEntity = CreatePed(9,pedModel,position.x,position.y,position.z,v.heading,false,true)
+            local finalEntity = CreatePed_(9,pedModel,position.x,position.y,position.z,v.heading,false,true)
+            --local finalEntity = CreatePed(9,pedModel,position.x,position.y,position.z,v.heading,false,true)
 
             SetEntityAsMissionEntity(finalEntity, true, true)
             SetBlockingOfNonTemporaryEvents(finalEntity,true)
@@ -54,9 +53,8 @@ Citizen.CreateThread(function()
         local position = groundVector(v.vector.x, v.vector.y, v.vector.z)
 
         -- rFramework friendly:
-        --local finalEntity = CreatePed_(9,pedModel,position.x,position.y,position.z,v.heading,false,true)
-        
-        local finalEntity = CreatePed(9,model,position.x,position.y,position.z,v.heading,false,true)
+        local finalEntity = CreatePed_(9,pedModel,position.x,position.y,position.z,v.heading,false,true)
+        --local finalEntity = CreatePed(9,model,position.x,position.y,position.z,v.heading,false,true)
 
         SetEntityAsMissionEntity(finalEntity, true, true)
         SetBlockingOfNonTemporaryEvents(finalEntity,true)

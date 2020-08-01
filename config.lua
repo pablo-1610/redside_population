@@ -41,6 +41,7 @@ populationConfig = {
         -- Génération d'un ped nu sans animation.
         {model = "a_m_m_acult_01", vector = vector3(240.79, -863.16, 29.71), heading = 90.0, anim = nil},
         -- Génération d'un ped nu qui joue d'un instrument de musique
+        {model = "a_m_m_acult_01", vector = vector3(245.79, -863.16, 29.71), heading = 90.0, anim = "WORLD_HUMAN_MUSICIAN"},
     },
 
 }
